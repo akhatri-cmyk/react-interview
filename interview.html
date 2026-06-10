@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Senior React Developer — Interview</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700;900&family=Red+Hat+Text:wght@400;500;700&family=Red+Hat+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --rh-red: #ee0000;
+        --rh-red-dark: #a60000;
+        --rh-red-light: #fce3e3;
+        --rh-black: #151515;
+        --rh-gray-90: #1e1e1e;
+        --rh-gray-80: #3c3f42;
+        --rh-gray-60: #6a6e73;
+        --rh-gray-40: #a3a3a3;
+        --rh-gray-20: #d2d2d2;
+        --rh-gray-10: #e0e0e0;
+        --rh-gray-05: #f5f5f5;
+        --rh-white: #ffffff;
+        --rh-blue: #0066cc;
+        --rh-yellow: #f0ab00;
+        --rh-green: #3e8635;
+        --rh-border: #d2d2d2;
+      }
+      body {
+        font-family: "Red Hat Text", sans-serif;
+        background: var(--rh-gray-05);
+        color: var(--rh-black);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      .top-bar {
+        background: var(--rh-black);
+        padding: 14px 48px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .top-bar .hat {
+        width: 38px;
+        height: 38px;
+        background: var(--rh-red);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        color: #fff;
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 1rem;
+      }
+      .top-bar span {
+        color: var(--rh-white);
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      header {
+        background: var(--rh-black);
+        color: var(--rh-white);
+        padding: 64px 48px 56px;
+      }
+      header .inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h1 {
+        font-family: "Red Hat Display", sans-serif;
+        font-size: 3.2rem;
+        font-weight: 900;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+      }
+      h1 .red {
+        color: var(--rh-red);
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 48px 160px;
+      }
+
+      .q-card {
+        background: var(--rh-white);
+        border: 1px solid var(--rh-border);
+        border-radius: 10px;
+        margin-bottom: 36px;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+      }
+      .q-card:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+      }
+      .q-header {
+        padding: 28px 40px 24px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .q-num {
+        font-family: "Red Hat Mono", monospace;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--rh-white);
+        background: var(--rh-red);
+        padding: 6px 14px;
+        border-radius: 4px;
+        white-space: nowrap;
+        letter-spacing: 0.03em;
+      }
+      .q-ch {
+        font-family: "Red Hat Mono", monospace;
+        font-size: 0.74rem;
+        color: var(--rh-blue);
+        background: rgba(0, 102, 204, 0.07);
+        padding: 5px 12px;
+        border-radius: 4px;
+      }
+      .q-title {
+        font-family: "Red Hat Display", sans-serif;
+        font-weight: 700;
+        font-size: 1.3rem;
+        flex: 1;
+        min-width: 240px;
+        color: var(--rh-black);
+      }
+      .q-prompt {
+        padding: 0 40px 8px;
+        color: var(--rh-gray-60);
+        font-size: 1rem;
+        font-style: italic;
+        line-height: 1.7;
+      }
+
+      .code-block {
+        margin: 16px 32px 24px;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #2d2d2d;
+      }
+      .code-titlebar {
+        background: #252526;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .code-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      .code-dot.r {
+        background: #ff5f56;
+      }
+      .code-dot.y {
+        background: #ffbd2e;
+      }
+      .code-dot.g {
+        background: #27c93f;
+      }
+      .code-titlebar span {
+        font-family: "Red Hat Mono", monospace;
+        font-size: 0.72rem;
+        color: #858585;
+        margin-left: 8px;
+      }
+      .code-block pre {
+        background: #1e1e1e;
+        padding: 28px 32px;
+        font-family: "Red Hat Mono", monospace;
+        font-size: 0.88rem;
+        line-height: 2;
+        color: #d4d4d4;
+        white-space: pre;
+        overflow-x: auto;
+        tab-size: 2;
+      }
+      .code-block .kw {
+        color: #c586c0;
+      }
+      .code-block .kw2 {
+        color: #569cd6;
+      }
+      .code-block .fn {
+        color: #dcdcaa;
+      }
+      .code-block .str {
+        color: #ce9178;
+      }
+      .code-block .num {
+        color: #b5cea8;
+      }
+      .code-block .cmt {
+        color: #6a9955;
+        font-style: italic;
+      }
+      .code-block .comp {
+        color: #4ec9b0;
+      }
+      .code-block .tag {
+        color: #569cd6;
+      }
+      .code-block .attr {
+        color: #9cdcfe;
+      }
+      .code-block .jsx-str {
+        color: #ce9178;
+      }
+      .code-block .op {
+        color: #d4d4d4;
+      }
+      .code-block .const-name {
+        color: #4fc1ff;
+      }
+      .code-block .hook {
+        color: #dcdcaa;
+      }
+      .code-block .paren {
+        color: #ffd700;
+      }
+      .code-block .param {
+        color: #9cdcfe;
+      }
+      .footer {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 48px;
+        border-top: 1px solid var(--rh-border);
+        text-align: center;
+        color: var(--rh-gray-60);
+        font-size: 0.82rem;
+      }
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+        .container {
+          padding: 28px 20px 80px;
+        }
+        .q-header {
+          padding: 20px 24px 16px;
+          gap: 10px;
+        }
+        .q-prompt {
+          padding: 0 24px 6px;
+          font-size: 0.9rem;
+        }
+        .code-block {
+          margin: 12px 16px 18px;
+        }
+        .code-block pre {
+          padding: 20px;
+          font-size: 0.8rem;
+        }
+        header {
+          padding: 40px 24px 36px;
+        }
+        .top-bar {
+          padding: 12px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" style="padding-top: 48px">
+      <!-- CH1 — Re-renders & State Placement -->
+      <div class="q-card" id="q-ch1-intro">
+        <div class="q-header">
+          <span class="q-num">Q1–3</span><span class="q-ch">Ch 1</span> ><span
+            class="q-title"
+            >The Performance Investigation</span
+          >
+        </div>
+        <p class="q-prompt">
+          Each of these three apps has a performance problem. The UI works
+          correctly, but something is making it unnecessarily slow. Find the
+          issue and explain how you'd fix it without using
+          <code>React.memo</code>.
+        </p>
+      </div>
+
+      <!-- Snippet A: The slow modal (live example) -->
+      <div class="q-card" id="q1">
+        <div class="q-header">
+          <span class="q-num">A</span><span class="q-ch">Ch 1</span> ><span
+            class="q-title"
+            >App.jsx</span
+          >
+        </div>
+        <div style="padding: 12px 32px 20px">
+          <a
+            href="https://www.advanced-react.com/examples/01/01"
+            target="_blank"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+              color: var(--rh-blue);
+              font-size: 0.88rem;
+              text-decoration: none;
+              font-weight: 500;
+              background: #f0f7ff;
+              padding: 6px 14px;
+              border-radius: 6px;
+              border: 1px solid #cce0ff;
+            "
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            Live Example
+          </a>
+        </div>
+      </div>
+
+      <!-- Snippet B: The dangerous hook -->
+      <div class="q-card" id="q17">
+        <div class="q-header">
+          <span class="q-num">B</span><span class="q-ch">Ch 1</span> ><span
+            class="q-title"
+            >App.jsx</span
+          >
+        </div>
+        <p class="q-prompt">
+          A developer refactored the code from snippet A into this. Does this
+          fix the performance issue?
+        </p>
+        <div class="code-block">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span>App.jsx</span>
+          </div>
+          <pre><span class="kw2">const</span> <span class="fn">useModalDialog</span> = () =&gt; {
+  <span class="kw2">const</span> [<span class="param">isOpen</span>, <span class="fn">setIsOpen</span>] = <span class="hook">useState</span>(<span class="kw2">false</span>);
+  <span class="kw">return</span> {
+    <span class="attr">isOpen</span>,
+    <span class="attr">open</span>: () =&gt; <span class="fn">setIsOpen</span>(<span class="kw2">true</span>),
+    <span class="attr">close</span>: () =&gt; <span class="fn">setIsOpen</span>(<span class="kw2">false</span>),
+  };
+};
+
+<span class="kw2">const</span> <span class="fn">App</span> = () =&gt; {
+  <span class="kw2">const</span> { <span class="param">isOpen</span>, <span class="param">open</span>, <span class="param">close</span> } = <span class="fn">useModalDialog</span>();
+  <span class="kw">return</span> (
+    <span class="tag">&lt;div</span> <span class="attr">className</span>=<span class="jsx-str">"layout"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;<span class="comp">Button</span></span> <span class="attr">onClick</span>={<span class="param">open</span>}<span class="tag">&gt;</span>Open dialog<span class="tag">&lt;/<span class="comp">Button</span>&gt;</span>
+      {<span class="param">isOpen</span> ? <span class="tag">&lt;<span class="comp">ModalDialog</span></span> <span class="attr">onClose</span>={<span class="param">close</span>} <span class="tag">/&gt;</span> : <span class="kw2">null</span>}
+      <span class="tag">&lt;<span class="comp">VerySlowComponent</span> /&gt;</span>
+      <span class="tag">&lt;<span class="comp">BunchOfStuff</span> /&gt;</span>
+      <span class="tag">&lt;<span class="comp">OtherStuffAlsoComplicated</span> /&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+  );
+};</pre>
+        </div>
+      </div>
+      <!-- Snippet C: Hook chain propagation -->
+      <div class="q-card" id="q18">
+        <div class="q-header">
+          <span class="q-num">C</span><span class="q-ch">Ch 1</span> ><span
+            class="q-title"
+            >App.jsx</span
+          >
+        </div>
+        <p class="q-prompt">
+          The developer says this is fine because <code>width</code> is never
+          returned. Are they right?
+        </p>
+        <div class="code-block">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span>App.jsx</span>
+          </div>
+          <pre><span class="kw2">const</span> <span class="fn">useC</span> = () =&gt; {
+  <span class="kw2">const</span> [<span class="param">width</span>, <span class="fn">setWidth</span>] = <span class="hook">useState</span>(<span class="num">0</span>);
+  <span class="hook">useEffect</span>(<span class="paren">()</span> <span class="kw2">=&gt;</span> {
+    <span class="kw2">const</span> <span class="fn">listener</span> = () =&gt; <span class="fn">setWidth</span>(window.<span class="attr">innerWidth</span>);
+    window.<span class="fn">addEventListener</span>(<span class="str">'resize'</span>, <span class="fn">listener</span>);
+    <span class="kw">return</span> () =&gt; window.<span class="fn">removeEventListener</span>(<span class="str">'resize'</span>, <span class="fn">listener</span>);
+  }, []);
+  <span class="kw">return</span> <span class="kw2">null</span>; <span class="cmt">// width is NOT returned</span>
+};
+
+<span class="kw2">const</span> <span class="fn">useB</span> = () =&gt; {
+  <span class="fn">useC</span>();
+  <span class="kw">return</span> <span class="kw2">null</span>;
+};
+
+<span class="kw2">const</span> <span class="fn">useA</span> = () =&gt; {
+  <span class="fn">useB</span>();
+  <span class="kw">return</span> { <span class="attr">something</span>: <span class="str">'unrelated'</span> };
+};
+
+<span class="kw2">const</span> <span class="fn">App</span> = () =&gt; {
+  <span class="kw2">const</span> <span class="param">data</span> = <span class="fn">useA</span>();
+  <span class="kw">return</span> <span class="tag">&lt;<span class="comp">HeavyDashboard</span> /&gt;</span>;
+};</pre>
+        </div>
+      </div>
+
+      <!-- CH2 -->
+      <div class="q-card" id="q2">
+        <div class="q-header">
+          <span class="q-num">Q4</span><span class="q-ch">Ch 2</span> ><span
+            class="q-title"
+            >The Laggy Scroll</span
+          >
+        </div>
+        <p class="q-prompt">
+          Scrolling is laggy because every scroll event re-renders the slow
+          components. The state can't be "moved down" since it's on the wrapping
+          div. How would you fix it?
+        </p>
+        <div style="padding: 12px 32px 20px">
+          <a
+            href="https://www.advanced-react.com/examples/02/01"
+            target="_blank"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+              color: var(--rh-blue);
+              font-size: 0.88rem;
+              text-decoration: none;
+              font-weight: 500;
+              background: #f0f7ff;
+              padding: 6px 14px;
+              border-radius: 6px;
+              border: 1px solid #cce0ff;
+            "
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+              />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            Live Example
+          </a>
+        </div>
+      </div>
+
+      <!-- CH16 — Error Handling Gauntlet -->
+      <div class="q-card" id="q-ch16-intro">
+        <div class="q-header">
+          <span class="q-num">Q30–33</span
+          ><span class="q-ch">Ch 16</span> ><span class="q-title"
+            >The Error Handling Gauntlet</span
+          >
+        </div>
+        <p class="q-prompt">
+          Each of these four components has a bug. The developer thinks they've
+          handled failures gracefully, but none of them work as intended. What
+          goes wrong in each?
+        </p>
+      </div>
+
+      <!-- Snippet A: try/catch can't catch children -->
+      <div class="q-card" id="q31">
+        <div class="q-header">
+          <span class="q-num">A</span><span class="q-ch">Ch 16</span> ><span
+            class="q-title"
+            >Component.jsx</span
+          >
+        </div>
+        <div class="code-block">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span>Component.jsx</span>
+          </div>
+          <pre><span class="kw2">const</span> <span class="fn">Component</span> = () =&gt; {
+  <span class="kw">try</span> {
+    <span class="kw">return</span> <span class="tag">&lt;<span class="comp">Child</span> /&gt;</span>;
+  } <span class="kw">catch</span> (<span class="param">e</span>) {
+    <span class="kw">return</span> <span class="tag">&lt;<span class="comp">ErrorScreen</span> /&gt;</span>;
+  }
+};</pre>
+        </div>
+      </div>
+
+      <!-- Snippet B: try/catch wrapping useEffect -->
+      <div class="q-card" id="q32">
+        <div class="q-header">
+          <span class="q-num">B</span><span class="q-ch">Ch 16</span> ><span
+            class="q-title"
+            >Dashboard.jsx</span
+          >
+        </div>
+        <div class="code-block">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span>Dashboard.jsx</span>
+          </div>
+          <pre><span class="kw2">const</span> <span class="fn">Dashboard</span> = () =&gt; {
+  <span class="kw2">const</span> [<span class="param">ready</span>, <span class="fn">setReady</span>] = <span class="hook">useState</span>(<span class="kw2">false</span>);
+  <span class="kw2">const</span> [<span class="param">error</span>, <span class="fn">setError</span>] = <span class="hook">useState</span>(<span class="kw2">null</span>);
+
+  <span class="kw">try</span> {
+    <span class="hook">useEffect</span>(<span class="paren">()</span> <span class="kw2">=&gt;</span> {
+      <span class="fn">initDashboard</span>();  <span class="cmt">// throws if config is invalid</span>
+      <span class="fn">setReady</span>(<span class="kw2">true</span>);
+    }, []);
+  } <span class="kw">catch</span> (<span class="param">e</span>) {
+    <span class="fn">setError</span>(<span class="param">e</span>.<span class="attr">message</span>);
+  }
+
+  <span class="kw">if</span> (<span class="param">error</span>) <span class="kw">return</span> <span class="tag">&lt;div&gt;</span>Something went wrong: {<span class="param">error</span>}<span class="tag">&lt;/div&gt;</span>;
+  <span class="kw">if</span> (!<span class="param">ready</span>) <span class="kw">return</span> <span class="tag">&lt;div&gt;</span>Initializing...<span class="tag">&lt;/div&gt;</span>;
+  <span class="kw">return</span> <span class="tag">&lt;<span class="comp">DashboardContent</span> /&gt;</span>;
+};</pre>
+        </div>
+      </div>
+
+      <!-- Snippet C: setState during render infinite loop -->
+      <div class="q-card" id="q33">
+        <div class="q-header">
+          <span class="q-num">C</span><span class="q-ch">Ch 16</span> ><span
+            class="q-title"
+            >Settings.jsx</span
+          >
+        </div>
+        <div class="code-block">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span>Settings.jsx</span>
+          </div>
+          <pre><span class="kw2">const</span> <span class="fn">Settings</span> = ({ <span class="param">rawConfig</span> }) =&gt; {
+  <span class="kw2">const</span> [<span class="param">hasError</span>, <span class="fn">setHasError</span>] = <span class="hook">useState</span>(<span class="kw2">false</span>);
+
+  <span class="kw">try</span> {
+    <span class="kw2">const</span> <span class="param">config</span> = <span class="fn">parseConfig</span>(<span class="param">rawConfig</span>); <span class="cmt">// throws if rawConfig is malformed</span>
+  } <span class="kw">catch</span> (<span class="param">e</span>) {
+    <span class="fn">setHasError</span>(<span class="kw2">true</span>);
+  }
+
+  <span class="kw">if</span> (<span class="param">hasError</span>) <span class="kw">return</span> <span class="tag">&lt;div&gt;</span>Invalid configuration<span class="tag">&lt;/div&gt;</span>;
+  <span class="kw">return</span> <span class="tag">&lt;<span class="comp">SettingsPanel</span></span> <span class="attr">config</span>={<span class="param">config</span>} <span class="tag">/&gt;</span>;
+};</pre>
+        </div>
+      </div>
+
+      <!-- Snippet D: ErrorBoundary wrong placement + async throw (Hard finale) -->
+      <div class="q-card" id="q16">
+        <div class="q-header">
+          <span class="q-num">D</span><span class="q-ch">Ch 16</span> ><span
+            class="q-title"
+            >UserProfile.jsx</span
+          >
+        </div>
+        <div class="code-block">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span>UserProfile.jsx</span>
+          </div>
+          <pre><span class="kw2">function</span> <span class="fn">UserProfile</span>({ <span class="param">userId</span> }) {
+  <span class="kw2">const</span> [<span class="param">user</span>, <span class="fn">setUser</span>] = <span class="hook">useState</span>(<span class="kw2">null</span>);
+
+  <span class="hook">useEffect</span>(<span class="paren">()</span> <span class="kw2">=&gt;</span> {
+    <span class="fn">fetch</span>(<span class="str">`/api/users/</span>${<span class="param">userId</span>}<span class="str">`</span>)
+      .<span class="fn">then</span>(<span class="param">r</span> <span class="kw2">=&gt;</span> {
+        <span class="kw">if</span> (!<span class="param">r</span>.<span class="attr">ok</span>) <span class="kw">throw</span> <span class="kw2">new</span> <span class="comp">Error</span>(<span class="str">'Failed to fetch'</span>);
+        <span class="kw">return</span> <span class="param">r</span>.<span class="fn">json</span>();
+      })
+      .<span class="fn">then</span>(<span class="param">data</span> <span class="kw2">=&gt;</span> <span class="fn">setUser</span>(<span class="param">data</span>));
+  }, [<span class="param">userId</span>]);
+
+  <span class="kw">return</span> (
+    <span class="tag">&lt;<span class="comp">ErrorBoundary</span>&gt;</span>
+      <span class="tag">&lt;div&gt;</span>{<span class="param">user</span>?.<span class="attr">name</span>}<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;/<span class="comp">ErrorBoundary</span>&gt;</span>
+  );
+}</pre>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      Based on "Advanced React" by Nadia Makarevich — comprehensive exercises
+      from all 16 chapters.
+    </div>
+  </body>
+</html>
